@@ -119,3 +119,19 @@ convention = "google"
 
 [tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
+
+[settings]
+ffmpeg_path = "bin/win/ffmpeg/ffmpeg.exe"
+output_dir="downloaded"
+network_retries=3
+network_socket_timeout=5
+network_http_headers = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
+domains_youtube=["www.youtube.com", "youtube.com", "youtu.be"]
+
+
+[logging]
+filename = "yttv.log"
+logs_catalog = "logs"
+log_level = "INFO"
+log_backup_count = 3
+log_mb = 5
