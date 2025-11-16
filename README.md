@@ -70,7 +70,7 @@ ffmpeg_path = "bin/win/ffmpeg/ffmpeg.exe"  # Укажите путь до ffmpeg
    - macOS: `brew install ffmpeg`
 
 2. Указать полный путь:
-   - Windows: `ffmpeg_path = "C:/path/to/ffmpeg.exe"`
+   - Windows: `ffmpeg_path = "C:/path/to/ffmpeg.exe"` или `ffmpeg_path = "C:\\path\\to\\ffmpeg.exe"`"
    - Linux/macOS: `ffmpeg_path = "/usr/bin/ffmpeg"` (или путь, где установлен)
 
 3. Проверить установку:
