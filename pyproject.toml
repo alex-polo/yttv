@@ -1,7 +1,7 @@
 [project]
-name = "yttv"
+name = "YTTV"
 version = "0.1.0"
-description = "Add your description here"
+description = ""
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -17,3 +17,105 @@ dev = [
     "pytest>=9.0.1",
     "ruff>=0.14.5",
 ]
+
+
+[tool.mypy]
+python_version = "3.13"
+#strict = true
+exclude = [".venv"]
+
+warn_return_any = true               # Предупреждать, если функция возвращает Any
+warn_unused_configs = true           # Предупреждать о неиспользуемых настройках mypy
+warn_unused_ignores = true           # Предупреждать о неиспользуемых # type: ignore комментариях
+warn_no_return = true                # Предупреждать о функциях без return (кроме None)
+warn_unreachable = true              # Предупреждать о недостижимом коде
+warn_redundant_casts = true          # Предупреждать о лишних операциях cast()
+disallow_untyped_defs = true         # Запретить функции/методы без аннотаций типов
+disallow_incomplete_defs = true      # Запретить частичные аннотации (все параметры должны быть аннотированы)
+disallow_untyped_calls = true        # Запретить вызовы функций без аннотаций
+disallow_untyped_decorators = true   # Запретить декораторы без аннотаций типов
+check_untyped_defs = true            # Проверять тело функций даже без аннотаций
+strict_optional = true               # Строгая проверка Optional типов (None как отдельный тип)
+strict_equality = true               # Строгая проверка операторов равенства (==, !=)
+extra_checks = true                  # Включить дополнительные экспериментальные проверки
+
+[tool.ruff]
+target-version = "py313"
+line-length = 79
+preview = true
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "__pycache__",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",        # pycodestyle errors - ошибки стиля кода (PEP 8)
+    "W",        # pycodestyle warnings - предупреждения стиля кода (PEP 8)
+    "F",        # Pyflakes - статический анализ (неопределённые переменные, импорты)
+    "I",        # isort - сортировка и организация импортов
+    "B",        # flake8-bugbear - поиск потенциальных багов и плохих практик
+    "C4",       # flake8-comprehensions - оптимизирует list/dict/set comprehensions
+    "T20",      # flake8-print - предупреждает о print/debug print в коде
+    "SIM",      # flake8-simplify - предлагает упрощение кода (if/else, loops)
+    "RUF",      # Ruff-specific: Специфичные правила Ruff
+    "Q",        # flake8-quotes - проверяет согласованность кавычек
+    "UP",       # pyupgrade: Предлагает обновление синтаксиса
+    "ARG",      # flake8-unused-arguments: Находит неиспользуемые аргументы
+    "D",        # pydocstyle: Проверяет стиль docstring
+    "A",        # flake8-builtins - предупреждает об использовании встроенных имён
+    "N",        # pep8-naming - проверяет соглашения об именовании (CamelCase классов)
+    "C90",      # mccabe: Проверяет сложность кода
+    "TC",       # flake8-type-checking: Проверяет импорты для type checking
+    "PTH",      # flake8-use-pathlib: Рекомендует pathlib вместо os.path
+    "ANN",      # flake8-annotations: Требует аннотации типов
+]
+ignore = [
+    "RUF002",   # Docstring contains ambiguous cirilic symbols
+    "D100",     # Missing docstring in public module
+    "D104",     # Missing docstring in public package
+]
+
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+known-third-party = [
+    "click",
+    "pydantic_settings",
+    "pyfiglet",
+    "rich",
+    "yt_dlp",
+]
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true
+suppress-none-returning = true
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["id", "type"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
