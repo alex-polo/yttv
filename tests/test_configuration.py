@@ -53,7 +53,7 @@ class TestBaseConfig:
             ),
         ],
     )
-    def test_load_from_toml_error_scenarios(  # noqa: PLR6301
+    def test_load_from_toml_error_scenarios(
         self,
         path_exist_condition: bool,
         path_is_file_condition: bool,
@@ -86,7 +86,7 @@ class TestBaseConfig:
                 key="non_existent_section",
             )
 
-    def test_load_from_toml_success(self) -> None:  # noqa: PLR6301
+    def test_load_from_toml_success(self) -> None:
         """Configuration loaded successfully."""
         config_data = b"[project]\nname='application'\nversion='1.0.0'"
         with (
@@ -104,7 +104,7 @@ class TestBaseConfig:
 class TestProjectInfo:
     """Tests for ProjectInfo class."""
 
-    def test_load_project_info_success(self) -> None:  # noqa: PLR6301
+    def test_load_project_info_success(self) -> None:
         """Test successful project info loading."""
         project_data = {
             "name": "TestApp",
@@ -124,7 +124,7 @@ class TestProjectInfo:
             assert info.description == "Test application"
             assert info.authors == [{"name": "Test Author"}]
 
-    def test_load_project_info_defaults(self) -> None:  # noqa: PLR6301
+    def test_load_project_info_defaults(self) -> None:
         """Test project info loading with defaults."""
         project_data: dict = {}
 
@@ -143,7 +143,7 @@ class TestProjectInfo:
 class TestProjectSettings:
     """Tests for ProjectSettings class."""
 
-    def test_load_project_settings_success(self) -> None:  # noqa: PLR6301
+    def test_load_project_settings_success(self) -> None:
         """Test successful settings loading."""
         settings_data: dict[str, str] = {
             "ffmpeg_path": "/usr/bin/ffmpeg",
@@ -162,7 +162,7 @@ class TestProjectSettings:
             assert str(settings.ffmpeg_path) == "/usr/bin/ffmpeg"
             assert settings.output_dir == downloaded_path
 
-    def test_load_project_settings_missing_fields(self) -> None:  # noqa: PLR6301
+    def test_load_project_settings_missing_fields(self) -> None:
         """Test loading settings with missing required fields."""
         settings_data: dict[str, None] = {
             "ffmpeg_path": None,
@@ -179,7 +179,7 @@ class TestProjectSettings:
         ):
             ProjectSettings.load_project_settings("pyproject.toml")
 
-    def test_ffmpeg_validator_file_not_found(self) -> None:  # noqa: PLR6301
+    def test_ffmpeg_validator_file_not_found(self) -> None:
         """Test ffmpeg validation when file not found."""
         with (
             patch("pathlib.Path.exists", return_value=False),
@@ -189,7 +189,7 @@ class TestProjectSettings:
                 Path("./fake_ffmpeg"),
             )
 
-    def test_ffmpeg_validator_not_executable(self) -> None:  # noqa: PLR6301
+    def test_ffmpeg_validator_not_executable(self) -> None:
         """Test ffmpeg validation when file not executable."""
         with (
             patch("pathlib.Path.exists", return_value=True),
@@ -200,7 +200,7 @@ class TestProjectSettings:
                 Path("./fake/ffmpeg"),
             )
 
-    def test_output_dir_validator_success(self) -> None:  # noqa: PLR6301
+    def test_output_dir_validator_success(self) -> None:
         """Test successful output directory validation."""
         test_path = Path("./test")
         with (
@@ -210,7 +210,7 @@ class TestProjectSettings:
             result: Path = ProjectSettings.validate_output_dir(test_path)
             assert result == test_path.absolute()
 
-    def test_output_dir_validator_cannot_create(self) -> None:  # noqa: PLR6301
+    def test_output_dir_validator_cannot_create(self) -> None:
         """Test output directory validation when cannot create."""
         with (
             patch("pathlib.Path.exists", return_value=False),
