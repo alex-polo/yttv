@@ -40,7 +40,8 @@ def get_logging_config_dictionary(logger_config: LoggerConfig) -> dict:
             "log_file": {
                 "class": "logging.handlers.RotatingFileHandler",
                 "formatter": "detailed",
-                "filename": Path(logger_config.logs_catalog) / logger_config.filename,
+                "filename": Path(logger_config.logs_catalog)
+                / logger_config.filename,
                 "maxBytes": logger_config.max_bytes_size_file_log,
                 "backupCount": logger_config.log_backup_count,
                 "level": logger_config.log_level,

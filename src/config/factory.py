@@ -30,7 +30,7 @@ class ConfigFactory(Protocol):
 class DefaultConfigFactory(ConfigFactory):
     """Default implementation of the ConfigFactory protocol."""
 
-    def create_project_info(self) -> ProjectInfo:  # noqa: PLR6301
+    def create_project_info(self) -> ProjectInfo:
         """Create a ProjectInfo instance by loading static project metadata.
 
         Returns:
@@ -39,7 +39,7 @@ class DefaultConfigFactory(ConfigFactory):
         """
         return ProjectInfo.load_project_info()
 
-    def create_project_settings(self) -> ProjectSettings:  # noqa: PLR6301
+    def create_project_settings(self) -> ProjectSettings:
         """Create a ProjectSettings instance by loading runtime configuration.
 
         Returns:

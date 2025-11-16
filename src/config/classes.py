@@ -22,6 +22,7 @@ class BaseConfiguration(BaseSettings):
     @staticmethod
     def load_from_toml(config_path: str, key: str = "project") -> dict:
         """Load project data from a TOML file.
+
         Args:
             config_path: Path to the project configuration file.
             key: Configuration section, defaults to "project".
@@ -34,7 +35,8 @@ class BaseConfiguration(BaseSettings):
                 or if the specified path is not a file.
             ConfigSetupError: If the specified key section is not found
                 in the configuration file.
-            PermissionConfigDeniedError: Insufficient permissions to access the configuration file.
+            PermissionConfigDeniedError: Insufficient permissions to
+                access the configuration file.
         """
         path: Path = Path(config_path).resolve()
 

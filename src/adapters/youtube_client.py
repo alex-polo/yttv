@@ -30,7 +30,7 @@ class YouTubeClientProtocol(Protocol):
     def request_video_data_by_url(  # noqa D102
         self,
         url: str,
-        callback: Callable | None = None,
+        callback: Callable[..., None] | None = None,
         **options: object,
     ) -> YouTubeContent: ...
 
@@ -38,7 +38,7 @@ class YouTubeClientProtocol(Protocol):
     def download(  # noqa D102
         self,
         url: str,
-        callback: Callable | None = None,
+        callback: Callable[..., None] | None = None,
         **options: object,
     ) -> None: ...
 
@@ -187,7 +187,7 @@ class YtDLPClientAdapter(YouTubeClientProtocol):
         }
         try:
             # Pylance cannot resolve yt-dlp types;
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:  # type: ignore[reportArgumentType]
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:  # pyright: ignore[reportArgumentType]
                 ydl_data: Any | None = ydl.extract_info(
                     url=url,
                     download=False,
@@ -263,7 +263,7 @@ class YtDLPClientAdapter(YouTubeClientProtocol):
 
         try:
             # Pylance cannot resolve yt-dlp types;
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:  # type: ignore[import-untyped]
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:  # pyright: ignore[reportArgumentType]
                 ydl.download([url])
         except Exception as e:
             raise DownloadVideoByUrlError() from e
