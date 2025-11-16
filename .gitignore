@@ -1,7 +1,10 @@
 __pycache__/
+*.pyc
 .venv
 .vscode
 .mypy_cache
 .pytest_cache
+.ruff_cache
 downloaded/
+__pypackages__/
 bin/
